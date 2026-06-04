@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Theme: Light (default) ── */
+:root,
+[data-theme='light'] {
+  --color-primary: 37 99 235;
+  --color-primary-hover: 29 78 216;
+  --color-surface: 255 255 255;
+  --color-surface-alt: 248 250 252;
+  --color-border: 226 232 240;
+  --color-text-primary: 15 23 42;
+  --color-text-secondary: 71 85 105;
+  --color-text-muted: 148 163 184;
+  --color-success: 22 163 74;
+  --color-warning: 234 179 8;
+  --color-danger: 220 38 38;
+  --color-mn-callout: 124 58 237;
+  --color-mn-callout-bg: 245 243 255;
+  --color-bg: 248 250 252;
+}
+
+/* ── Theme: Sepia ── */
+[data-theme='sepia'] {
+  --color-primary: 161 98 7;
+  --color-primary-hover: 133 77 14;
+  --color-surface: 253 246 227;
+  --color-surface-alt: 250 240 210;
+  --color-border: 217 200 163;
+  --color-text-primary: 68 64 60;
+  --color-text-secondary: 87 83 78;
+  --color-text-muted: 168 162 158;
+  --color-success: 22 163 74;
+  --color-warning: 234 179 8;
+  --color-danger: 220 38 38;
+  --color-mn-callout: 124 58 237;
+  --color-mn-callout-bg: 245 240 225;
+  --color-bg: 253 246 227;
+}
+
+/* ── Theme: Dark ── */
+[data-theme='dark'] {
+  --color-primary: 96 165 250;
+  --color-primary-hover: 147 197 253;
+  --color-surface: 30 41 59;
+  --color-surface-alt: 15 23 42;
+  --color-border: 51 65 85;
+  --color-text-primary: 226 232 240;
+  --color-text-secondary: 148 163 184;
+  --color-text-muted: 100 116 139;
+  --color-success: 74 222 128;
+  --color-warning: 250 204 21;
+  --color-danger: 248 113 113;
+  --color-mn-callout: 167 139 250;
+  --color-mn-callout-bg: 30 27 50;
+  --color-bg: 15 23 42;
+}
+
+/* ── Base styles ── */
+body {
+  margin: 0;
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-text-primary));
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Respect prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Markdown content styles ── */
+.prose h1 { @apply text-2xl font-bold mt-6 mb-3; }
+.prose h2 { @apply text-xl font-bold mt-5 mb-2; }
+.prose h3 { @apply text-lg font-semibold mt-4 mb-2; }
+.prose p { @apply mb-3 leading-relaxed; }
+.prose ul { @apply list-disc pl-6 mb-3; }
+.prose ol { @apply list-decimal pl-6 mb-3; }
+.prose li { @apply mb-1; }
+.prose strong { @apply font-semibold; }
+.prose table { @apply w-full border-collapse mb-4; }
+.prose th { @apply text-left p-2 border-b-2 border-border font-semibold; }
+.prose td { @apply p-2 border-b border-border; }
+.prose code { @apply px-1.5 py-0.5 rounded bg-surface-alt text-sm; }
+.prose blockquote {
+  @apply border-l-4 border-primary pl-4 py-1 my-3 italic text-text-secondary;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-text-muted) / 0.3);
+  border-radius: 3px;
+}
+
+/* ── Flashcard flip ── */
+.card-flip {
+  perspective: 1000px;
+}
+.card-flip-inner {
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+.card-flip-inner.flipped {
+  transform: rotateY(180deg);
+}
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+}
+.card-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-flip-inner {
+    transition: none;
+  }
+}
