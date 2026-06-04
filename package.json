@@ -20,6 +20,9 @@
     "remark-gfm": "^4.0.1",
     "serve": "^14.2.6"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.12.3",
